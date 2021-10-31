@@ -16,7 +16,7 @@ import { TableDataService } from "./services/table-data.service";
 import { MatListModule } from "@angular/material/list";
 import { MatSortModule } from "@angular/material/sort";
 import { EditWindowComponent } from './components/editable-table/edit-window/edit-window.component';
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatDialogModule } from "@angular/material/dialog";
 
 @NgModule({
@@ -38,6 +38,7 @@ import { MatDialogModule } from "@angular/material/dialog";
     MatListModule,
     MatSortModule,
     ReactiveFormsModule,
+    FormsModule,
     MatDialogModule,
   ],
   providers: [GetApiDataService, TableDataService],

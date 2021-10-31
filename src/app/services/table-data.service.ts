@@ -6,12 +6,18 @@ import { Person } from "../interfaces";
   providedIn: 'root'
 })
 export class TableDataService {
-  personsData$ = new BehaviorSubject<Person[] | []>([]);
+  peopleData$ = new BehaviorSubject<Person[] | []>([]);
+  selectedFieldId: string = '';
 
   constructor() { }
 
-  setPersonsData(data: any) : void {
-    this.personsData$.next(data);
-    this.personsData$.subscribe(res => console.log("SUBJECT", res));
+  setInitialPeopleData(data: any) : void {
+    this.peopleData$.next(data);
+    this.peopleData$.subscribe(res => console.log("SUBJECT", res));
+  }
+
+  setSelectedFieldId(fieldId: string): void {
+    this.selectedFieldId = fieldId;
+    console.log("ID_IN_SERVICE", this.selectedFieldId);
   }
 }

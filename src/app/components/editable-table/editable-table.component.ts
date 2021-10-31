@@ -20,14 +20,15 @@ export class EditableTableComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.tableDataService.personsData$
+    this.tableDataService.peopleData$
       .subscribe(result => this.dataSource.data = result);
   }
 
   changeRowData(row: any): void {
     console.log("ROW", row);
+    this.tableDataService.setSelectedFieldId(row.login.uuid);
     this.dialog.open(EditWindowComponent, {
       data: { row }
-    }).afterClosed().subscribe(result => console.log(result));
+    })
   }
 }

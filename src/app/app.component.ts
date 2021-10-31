@@ -1,6 +1,5 @@
-import { Component, DoCheck, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GetApiDataService } from "./services/get-api-data.service";
-import { Person } from "./interfaces";
 import { TableDataService } from "./services/table-data.service";
 
 
@@ -12,15 +11,14 @@ import { TableDataService } from "./services/table-data.service";
 
 export class AppComponent implements OnInit {
   title = 'angular-api-task';
-  data: [] | Person[] = [];
 
   constructor(private apiService: GetApiDataService, private tableDataService: TableDataService) {
   }
 
   ngOnInit() {
-    this.apiService.getData()
+    this.apiService.getAPIData()
       .subscribe(res => {
-        this.tableDataService.setPersonsData(res);
+        this.tableDataService.setInitialPeopleData(res);
       });
   }
 }

@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { FormControl, FormGroup } from "@angular/forms";
+import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
 
 @Component({
   selector: 'app-edit-window',
@@ -11,16 +11,18 @@ export class EditWindowComponent implements OnInit {
 
   public editPersonDataGroup: FormGroup;
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {
-    this.editPersonDataGroup = new FormGroup({
-      name: new FormControl(data.row.name.first),
-      lastName: new FormControl(data.row.name.last),
-      gender: new FormControl(data.row.gender),
-      birthday: new FormControl(data.row.dob.date),
-      address: new FormControl(data.row.location.country + ', '
-        + data.row.location.city + ', '
-        + data.row.location.street.name + ', '
-        + data.row.location.street.number),
+  constructor(public fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any) {
+    this.editPersonDataGroup = fb.group({
+        name: new FormControl(data.row.name.first),
+        lastName: new FormControl(data.row.name.last),
+        gender: new FormControl(data.row.gender),
+        birthday: new FormControl(data.row.dob.date),
+        address: fb.group({
+          country: new FormControl(data.row.location.country),
+          city: new FormControl(data.row.location.city),
+          street: new FormControl(data.row.location.street.name),
+          number: new FormControl(data.row.location.street.number)
+        }),
       }
     )
   }
@@ -28,8 +30,16 @@ export class EditWindowComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  editPerson(e:any) {
-    console.log(e)
-    console.log("FORM_DATA",this.editPersonDataGroup.value);
+  editPerson() {
+    console.log("FORM_DATA", this.editPersonDataGroup.value);
+    let changedPersonData = {...this.data.row};
+    changedPersonData.name.first = this.editPersonDataGroup.value.name;
+    changedPersonData.name.last = this.editPersonDataGroup.value.last;
+    changedPersonData.gender = this.editPersonDataGroup.value.gender;
+    changedPersonData.dob.date = this.editPersonDataGroup.value.birthday;
+
+
+    console.log('CHANGED_PERSON_DATA', changedPersonData)
+
   }
 }

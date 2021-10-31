@@ -25,7 +25,7 @@ export class ViewTableComponent implements OnInit, AfterViewInit  {
   }
 
   ngOnInit(): void {
-    this.tableDataService.personsData$
+    this.tableDataService.peopleData$
       .subscribe(result => this.dataSource.data = result);
 
     // this.api.dataLoader().subscribe(res => console.log(res))

@@ -13,7 +13,7 @@ export class GetApiDataService {
   constructor(private http: HttpClient) {
   }
 
-  getData(): Observable<Array<Person>> {
+  getAPIData(): Observable<Array<Person>> {
     return this.http.get<ReceivedData>(url)
       .pipe(
         map(res => res.results)

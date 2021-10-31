@@ -7,7 +7,7 @@
   </div>
 
   <div class="modal-content">
-    <form #form [formGroup]="editPersonDataGroup" (ngSubmit)="editPerson($event)">
+    <form [formGroup]="editPersonDataGroup">
       <div>
         <span class="input-title">Name</span>
         <input class="modal-input" formControlName="name">
@@ -28,15 +28,32 @@
         <input class="modal-input" formControlName="birthday">
       </div>
 
-      <div>
-        <span class="input-title">Address</span>
-        <input class="modal-input" formControlName="address">
+      <div formGroupName="address">
+        <div>
+          <span class="input-title">Country</span>
+          <input class="modal-input" formControlName="country">
+        </div>
+
+        <div>
+          <span class="input-title">City</span>
+          <input class="modal-input" formControlName="city">
+        </div>
+
+        <div>
+          <span class="input-title">Street</span>
+          <input class="modal-input" formControlName="street">
+        </div>
+
+        <div>
+          <span class="input-title">Building number</span>
+          <input class="modal-input" formControlName="number">
+        </div>
       </div>
 
       <div class="modal-bottom">
         <div class="bottom-buttons">
           <button class="cancel-button cursor-pointer" type="button" [mat-dialog-close]="false">Cancel</button>
-          <button class="edit-button cursor-pointer" type="submit" [mat-dialog-close]="true">
+          <button class="edit-button cursor-pointer" (click)="editPerson()" type="submit" [mat-dialog-close]="true">
             <p class="edit-description">Save changes</p>
           </button>
         </div>
