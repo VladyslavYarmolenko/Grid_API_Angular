@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "grid-api-m2e": {
+    "angular-api-task": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/grid-api-m2e",
+            "outputPath": "dist/angular-api-task",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,10 +72,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "grid-api-m2e:build:production"
+              "browserTarget": "angular-api-task:build:production"
             },
             "development": {
-              "browserTarget": "grid-api-m2e:build:development"
+              "browserTarget": "angular-api-task:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -83,7 +83,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "grid-api-m2e:build"
+            "browserTarget": "angular-api-task:build"
           }
         },
         "test": {
@@ -107,5 +107,5 @@
       }
     }
   },
-  "defaultProject": "grid-api-m2e"
+  "defaultProject": "angular-api-task"
 }

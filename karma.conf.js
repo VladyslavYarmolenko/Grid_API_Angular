@@ -25,7 +25,7 @@ module.exports = function (config) {
       suppressAll: true // removes the duplicated traces
     },
     coverageReporter: {
-      dir: require('path').join(__dirname, './coverage/grid-api-m2e'),
+      dir: require('path').join(__dirname, './coverage/angular-api-task'),
       subdir: '.',
       reporters: [
         { type: 'html' },
