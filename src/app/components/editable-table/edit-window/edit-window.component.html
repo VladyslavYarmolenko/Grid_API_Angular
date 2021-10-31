@@ -1,0 +1,47 @@
+<div class="modal-window">
+  <div class="modal-header">
+    <h1 mat-dialog-title class="modal-title">Edit person data</h1>
+    <button class="close-modal cursor-pointer" type="button" [mat-dialog-close]="true">
+      <img src="/assets/images/close.svg" alt="Close window">
+    </button>
+  </div>
+
+  <div class="modal-content">
+    <form #form [formGroup]="editPersonDataGroup" (ngSubmit)="editPerson($event)">
+      <div>
+        <span class="input-title">Name</span>
+        <input class="modal-input" formControlName="name">
+      </div>
+
+      <div>
+        <span class="input-title">Last Name</span>
+        <input class="modal-input" formControlName="lastName">
+      </div>
+
+      <div>
+        <span class="input-title">Gender</span>
+        <input class="modal-input" formControlName="gender">
+      </div>
+
+      <div>
+        <span class="input-title">Birthday</span>
+        <input class="modal-input" formControlName="birthday">
+      </div>
+
+      <div>
+        <span class="input-title">Address</span>
+        <input class="modal-input" formControlName="address">
+      </div>
+
+      <div class="modal-bottom">
+        <div class="bottom-buttons">
+          <button class="cancel-button cursor-pointer" type="button" [mat-dialog-close]="false">Cancel</button>
+          <button class="edit-button cursor-pointer" type="submit" [mat-dialog-close]="true">
+            <p class="edit-description">Save changes</p>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
