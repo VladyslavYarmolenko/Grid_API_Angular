@@ -52,7 +52,7 @@ export class EditWindowComponent implements OnInit {
     changedPersonData.location.country = this.editPersonDataGroup.value.address.country;
     changedPersonData.location.city = this.editPersonDataGroup.value.address.city;
     changedPersonData.location.street.name = this.editPersonDataGroup.value.address.street;
-    changedPersonData.location.street.number = this.editPersonDataGroup.value.address.street.number;
+    changedPersonData.location.street.number = this.editPersonDataGroup.value.address.number;
 
     this.tableDataService.setChangedPersonData(changedPersonData);
   }
