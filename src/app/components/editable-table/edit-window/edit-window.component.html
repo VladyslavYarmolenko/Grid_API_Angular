@@ -20,12 +20,15 @@
 
       <div>
         <span class="input-title">Gender</span>
-        <input class="modal-input" formControlName="gender">
+        <select class="modal-select" formControlName="gender" [value]="this.data.row.gender">
+          <option>male</option>
+          <option>female</option>
+        </select>
       </div>
 
       <div>
         <span class="input-title">Birthday</span>
-        <input class="modal-input" formControlName="birthday">
+        <input class="modal-input" type="date" formControlName="birthday">
       </div>
 
       <div formGroupName="address">

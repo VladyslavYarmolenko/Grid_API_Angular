@@ -25,8 +25,7 @@ export class EditableTableComponent implements OnInit {
   }
 
   changeRowData(row: any): void {
-    console.log("ROW", row);
-    this.tableDataService.setSelectedFieldId(row.login.uuid);
+    this.tableDataService.setSelectedFieldId(row.cell);
     this.dialog.open(EditWindowComponent, {
       data: { row }
     })
