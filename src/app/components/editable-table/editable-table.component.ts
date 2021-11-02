@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatTableDataSource } from "@angular/material/table";
+import { Subject, takeUntil } from "rxjs";
 import { MatDialog } from "@angular/material/dialog";
 
 import { TableDataService } from "../../services/table-data.service";
 
 import { EditWindowComponent } from "./edit-window/edit-window.component";
+
 
 
 @Component({
@@ -13,8 +15,9 @@ import { EditWindowComponent } from "./edit-window/edit-window.component";
   styleUrls: ['./editable-table.component.scss']
 })
 
-export class EditableTableComponent implements OnInit {
+export class EditableTableComponent implements OnInit, OnDestroy {
 
+  ngUnsubscribe$ = new Subject<void>();
   displayedColumns: string[] = ['name', 'lastName', 'gender', 'birthday', 'address'];
   dataSource: any = new MatTableDataSource([]);
 
@@ -23,6 +26,7 @@ export class EditableTableComponent implements OnInit {
 
   ngOnInit(): void {
     this.tableDataService.peopleData$
+      .pipe(takeUntil(this.ngUnsubscribe$))
       .subscribe(result => {
         this.dataSource.data = result
       });
@@ -33,5 +37,10 @@ export class EditableTableComponent implements OnInit {
     this.dialog.open(EditWindowComponent, {
       data: {row}
     })
+  }
+
+  ngOnDestroy(): void {
+    this.ngUnsubscribe$.next();
+    this.ngUnsubscribe$.complete();
   }
 }

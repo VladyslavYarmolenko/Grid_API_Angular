@@ -19,8 +19,8 @@ declare var _: any;
 
 export class EditWindowComponent implements OnInit {
 
-  public editPersonDataGroup: FormGroup;
-  public showingInputDate: string;
+   editPersonDataGroup: FormGroup;
+   showingInputDate: string;
 
   constructor(public fb: FormBuilder,
               @Inject(MAT_DIALOG_DATA) public data: any,
