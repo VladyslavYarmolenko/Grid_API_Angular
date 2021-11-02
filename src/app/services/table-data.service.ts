@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, mergeMap, of } from "rxjs";
+import { BehaviorSubject } from "rxjs";
+
 import { Person } from "../interfaces";
 
 
@@ -23,7 +24,6 @@ export class TableDataService {
 
   setSelectedFieldId(personCell: string): void {
     this.selectedPersonCell = personCell;
-    console.log("ID_IN_SERVICE", this.selectedPersonCell);
   }
 
   setChangedPersonData(changedData: Person): void {
@@ -31,16 +31,15 @@ export class TableDataService {
 
     this.peopleData$
       // .pipe(
-      //   mergeMap(peopleArr => {
+      //   map(peopleArr => {
       //
-      //       let changedArr = [...peopleArr]
-      //       let selectedPersonIndex = changedArr.findIndex(elem => elem.cell === this.selectedPersonCell);
-      //       changedArr.splice(selectedPersonIndex, 1, this.changedPersonDataObj);
+      //       let selectedPersonIndex = peopleArr.findIndex(elem => elem.cell === this.selectedPersonCell);
+      //       peopleArr.splice(selectedPersonIndex, 1, this.changedPersonDataObj);
       //
-      //       return of(changedArr);
+      //       return peopleArr;
       //     }
-      //   )
-      // )
+      //   ),
+      // ).subscribe(res => console.log("RESULT", res))
 
 
       // .pipe(

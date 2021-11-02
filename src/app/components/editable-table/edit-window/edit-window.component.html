@@ -56,7 +56,8 @@
       <div class="modal-bottom">
         <div class="bottom-buttons">
           <button class="cancel-button cursor-pointer" type="button" [mat-dialog-close]="false">Cancel</button>
-          <button class="edit-button cursor-pointer" (click)="editPerson()" type="submit" [mat-dialog-close]="true">
+          <button class="edit-button cursor-pointer" mat-stroked-button (click)="editPerson()" type="submit"
+                  [mat-dialog-close]="true">
             <p class="edit-description">Save changes</p>
           </button>
         </div>

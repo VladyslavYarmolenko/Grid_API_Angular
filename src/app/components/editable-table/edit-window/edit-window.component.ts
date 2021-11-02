@@ -1,10 +1,15 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { FormBuilder, FormControl, FormGroup } from "@angular/forms";
-import 'lodash';
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 import { TableDataService } from "../../../services/table-data.service";
+import { ApiDataService } from "../../../services/api-data.service";
+
+import 'lodash';
 
 declare var _: any;
+
 
 @Component({
   selector: 'app-edit-window',
@@ -15,10 +20,14 @@ declare var _: any;
 export class EditWindowComponent implements OnInit {
 
   public editPersonDataGroup: FormGroup;
-
   public showingInputDate: string;
 
-  constructor(public fb: FormBuilder, @Inject(MAT_DIALOG_DATA) public data: any, private tableDataService: TableDataService) {
+  constructor(public fb: FormBuilder,
+              @Inject(MAT_DIALOG_DATA) public data: any,
+              public tableDataService: TableDataService,
+              public apiService: ApiDataService,
+              public snackBar: MatSnackBar) {
+
     this.showingInputDate = new Date(data.row.dob.date)
       .toISOString()
       .split('T')[0];
@@ -41,6 +50,10 @@ export class EditWindowComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  openSnackBar(personCell: string): void {
+    this.snackBar.open(`Updated person data with cell: ${personCell}`, 'Close')
+  }
+
   editPerson(): void {
 
     let changedPersonData = _.cloneDeep(this.data.row);
@@ -54,6 +67,11 @@ export class EditWindowComponent implements OnInit {
     changedPersonData.location.street.name = this.editPersonDataGroup.value.address.street;
     changedPersonData.location.street.number = this.editPersonDataGroup.value.address.number;
 
+    this.apiService.updateApiData(changedPersonData);
+    ///than I should working with response data
+
     this.tableDataService.setChangedPersonData(changedPersonData);
+
+    this.openSnackBar(changedPersonData.cell);
   }
 }

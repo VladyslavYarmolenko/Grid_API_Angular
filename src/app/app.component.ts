@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { GetApiDataService } from "./services/get-api-data.service";
+
+import { ApiDataService } from "./services/api-data.service";
 import { TableDataService } from "./services/table-data.service";
 
 
@@ -12,7 +13,7 @@ import { TableDataService } from "./services/table-data.service";
 export class AppComponent implements OnInit {
   title = 'angular-api-task';
 
-  constructor(private apiService: GetApiDataService, private tableDataService: TableDataService) {
+  constructor(private apiService: ApiDataService, private tableDataService: TableDataService) {
   }
 
   ngOnInit() {
