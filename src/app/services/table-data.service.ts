@@ -30,34 +30,10 @@ export class TableDataService {
     this.changedPersonDataObj = changedData;
 
     this.peopleData$
-      // .pipe(
-      //   map(peopleArr => {
-      //
-      //       let selectedPersonIndex = peopleArr.findIndex(elem => elem.cell === this.selectedPersonCell);
-      //       peopleArr.splice(selectedPersonIndex, 1, this.changedPersonDataObj);
-      //
-      //       return peopleArr;
-      //     }
-      //   ),
-      // ).subscribe(res => console.log("RESULT", res))
-
-
-      // .pipe(
-      //   map(peopleArr => {
-      //
-      //       let selectedPersonIndex = peopleArr.findIndex(elem => elem.cell === this.selectedPersonCell);
-      //       peopleArr.splice(selectedPersonIndex, 1, this.changedPersonDataObj);
-      //
-      //       return of(peopleArr);
-      //     }
-      //   )
-      // )
-
       .subscribe(peopleArr => {
         this.changedArr = [...peopleArr];
         let selectedPersonIndex = this.changedArr.findIndex(elem => elem.cell === this.selectedPersonCell);
         this.changedArr.splice(selectedPersonIndex, 1, this.changedPersonDataObj);
-        console.log("CHANGED ARR", this.changedArr);
       })
 
     this.peopleData$.next(this.changedArr);
